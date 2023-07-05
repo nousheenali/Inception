@@ -11,7 +11,6 @@ DB_ROOT=root123
 DB_USER=wpuser
 DB_PASS=user123
 DB_HOST=mariadb
-DB_PREFIX=wp-
 
 
 # WORDPRESS
