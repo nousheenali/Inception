@@ -9,4 +9,6 @@ COPY ./tools/wp-script.sh /
 
 RUN chmod +x /wp-script.sh
 
-ENTRYPOINT ["./wp-script.sh"]
+# ENTRYPOINT ["./wp-script.sh"]
+CMD ["/bin/bash","-c","/bin/bash ./wp-script.sh && php-fpm7.3 -F"]
+# CMD ["/bin/bash ./wp-script.sh && php-fpm7.3 -F"]
