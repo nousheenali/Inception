@@ -3,14 +3,18 @@ version: '3'
 services:
   nginx:
     container_name: nginx
-    build: ./requirements/nginx/. 
+    build: 
+      context: ./requirements/nginx/
+      args:
+      - KEY_PATH=${KEY_PATH}
+      - CERT_PATH=${CERT_PATH} 
     image: nginx
     depends_on:
       - wordpress
     ports:
       - "443:443"   
     volumes:
-      - ./requirements/nginx/conf:/etc/nginx/conf.d/  
+      # - ./requirements/nginx/conf:/etc/nginx/conf.d/  
       - wp:/var/www/html 
     env_file:
       - .env   
@@ -20,7 +24,15 @@ services:
   
   mariadb:
     container_name: mariadb
-    build: ./requirements/mariadb/.
+    build:
+      context: ./requirements/mariadb/
+      args:
+        - DB_NAME=${DB_NAME}
+        - DB_USER=${DB_USER}
+        - DB_PASS=${DB_PASS}
+        - DB_ROOT=${DB_ROOT}
+        - AD_USER=${AD_USER}
+        - AD_PASS=${AD_PASS}
     image: mariadb
     expose:
       - '3306'

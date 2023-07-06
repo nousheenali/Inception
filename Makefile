@@ -1,23 +1,23 @@
 path = /home/nali/data
 
-all: volume build
+all: volume up
 
 volume:
 	mkdir -p ${path} ${path}/mariadb ${path}/wordpress
 
-up:
-	docker-compose -f ./srcs/docker-compose.yml up -d
+build:
+	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env build
 
-build: 
-	docker-compose -f ./srcs/docker-compose.yml up -d --build
+up: 
+	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env up --build -d
 
 stop:
-	docker-compose -f ./srcs/docker-compose.yml stop
+	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env stop
 
 down:
-	docker-compose -f ./srcs/docker-compose.yml down
+	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env down
 
-re:	down volume build
+re:	down volume up
 
 clean: down
 	docker system prune -a
