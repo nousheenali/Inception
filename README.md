@@ -16,11 +16,20 @@ This file will be placed inside srcs folder
 ```
 DOMAIN_NAME=nali.42.fr
 
+# certs
+KEY_PATH=/etc/ssl/private
+CERT_PATH=/etc/ssl/certs
+SUBJ=/C=AE/ST=AD/L=AD/O=42/OU=nali/CN=nali/
+
+
+# MYSQL
 DB_NAME=wordpress
 DB_ROOT=root123
 DB_USER=wpuser
 DB_PASS=user123
 DB_HOST=mariadb
+AD_USER=test
+AD_PASS=test123
 
 
 # WORDPRESS

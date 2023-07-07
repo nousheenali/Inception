@@ -8,6 +8,7 @@ services:
       args:
       - KEY_PATH=${KEY_PATH}
       - CERT_PATH=${CERT_PATH} 
+      - SUBJ=${SUBJ}
     image: nginx
     depends_on:
       - wordpress
@@ -46,7 +47,8 @@ services:
 
   wordpress:
     container_name: wordpress
-    build: ./requirements/wordpress/.
+    build:
+      context: ./requirements/wordpress/
     image: wordpress
     depends_on:
       - mariadb

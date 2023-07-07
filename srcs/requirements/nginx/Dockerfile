@@ -5,9 +5,10 @@ RUN apt-get update && apt-get install -y nginx openssl gettext-base
 
 ARG KEY_PATH
 ARG CERT_PATH
+ARG SUBJ
 
 RUN openssl genrsa -out nali.key 4096 && \
-openssl req -new -x509 -text -key nali.key -out nali.cert -subj "/C=AE/ST=AD/L=AD/O=42/OU=nali/CN=nali/" && \
+openssl req -new -x509 -text -key nali.key -out nali.cert -subj $SUBJ && \
 mv nali.key $KEY_PATH/ && mv nali.cert $CERT_PATH/
 
 EXPOSE 443
