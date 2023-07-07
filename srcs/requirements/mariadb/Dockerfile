@@ -1,6 +1,6 @@
-FROM debian:buster
+FROM debian:bullseye
 
-RUN apt-get update && apt-get install -y mariadb-server mariadb-client 
+RUN apt-get update && apt-get install -y mariadb-server mariadb-client
 
 ARG DB_NAME
 ARG DB_USER
@@ -13,7 +13,7 @@ COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
 EXPOSE 3306
 
-RUN service mysql start && mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;\
+RUN service mariadb start && mariadb -u root -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;\
 CREATE USER IF NOT EXISTS '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}'; \
 CREATE USER IF NOT EXISTS '${AD_USER}'@'%' IDENTIFIED BY '${AD_PASS}'; \
 GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${AD_USER}'@'%'; \
